@@ -1,0 +1,44 @@
+{% extends 'student/studentBase.html' %}
+
+{% block title%} update your profile {% endblock%}
+{% block content %}
+
+
+<h3>Student info page </h3>
+
+<table class="table table-bordered border-primary">
+                <thead>
+                    <tr>
+                    <th>User Name</th>
+                    <th>{{std_dat.user}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th >Full Name</th>
+                    <td>{{std_dat.name}}</td>
+                
+                    </tr>
+                    <tr>
+                    <th >Father Name</th>
+                    <td>{{std_dat.fatherName}}</td>
+                    </tr>
+                    <tr>
+                    <th>Mother Name</th>
+                    <td >{{std_dat.motherName}}</td>
+                    </tr>
+            
+                    <th>Roll Number</th>
+                    <td >{{std_dat.rollNumber}}</td>
+                    </tr>
+                    <th>Address</th>
+                    <td >{{std_dat.address}}</td>
+                    </tr>
+                    <th>MobileNumber</th>
+                    <td >{{std_dat.mobileNumber}}</td>
+                    </tr>
+                </tbody>
+        </table>
+ 
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Assignment page </h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<table class="table table-striped table-sm">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Roll Number</th>
+        <th>Admission No</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for i in student_data %}
+    <tr class="studentRow">
+
+        <td>{{i.name}}</td>
+        <td>{{i.rollNumber}}</td>
+        <td> {{i.admissionNo}}</td>
+        <td>
+            <input type="checkbox" name="myadmissionNo" value="{{i.admissionNo}}">
+        </td>
+    </tr> 
+    {% endfor %}
+
+    </tbody>
+</table>
+<input type='file' name='myfiles' multiple>
+<button class='btn btn-primary' type="submit">submit</button>
+   
+
+
+ 
+ </form>
+
+
+
+
+{% endblock %}

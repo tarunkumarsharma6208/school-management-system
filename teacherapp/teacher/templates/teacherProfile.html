@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title%} Teacher profile {% endblock%}
+{% block content %}
+
+
+<h3>Teacher info page </h3>
+<a class="btn btn-info btn-sm" href="{% url 'teacherProfileUpdate' %}">Update Profile Detail</a>
+<table class="table table-bordered border-primary mt-4">
+                
+                <thead>
+                    <tr>
+                    <th>User Name</th>
+                    <th>{{tech_data.user}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                    <th >Full Name</th>
+                    <td>{{tech_data.fullName}}</td>
+                    </tr>
+                    <tr>
+                    <th>Mother Name</th>
+                    <td >{{tech_data.classTeacher}}</td>
+                    </tr>
+            
+                    <th>Subject</th>
+                    <td >{{tech_data.subject}}</td>
+                    </tr>
+                    <th>Reporting To</th>
+                    <td >{{tech_data.reportingTo}}</td>
+                    </tr>
+                    <th>MobileNumber</th>
+                    <td >{{tech_data.mobileNumber}}</td>
+                    </tr>
+                </tbody>
+        </table>
+ 
+
+{% endblock %}

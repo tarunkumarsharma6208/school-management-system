@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %} Attendance view {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-primary">{{message}}</div>
+{% endfor %}
+{% endif %}
+<form method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+<table class="table table-striped table-sm">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Admission No</th>
+        <th>Roll number</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for i in student_status %}
+    <tr class="studentRow">
+
+        <td>{{i.name}}</td>
+        <td>{{i.rollNumber}}</td>
+        <td class="studRoll1" va1="{{i.rollNumber}}">
+        <input type="hidden" class="studRoll" value="{{i.admissionNo}}"> {{i.admissionNo}}
+        </td>
+        {% if not std %}
+        <td>
+            <input type="radio" name="{{ i.admissionNo }}" value="present" />Present
+            <input type="radio" name="{{ i.admissionNo }}" value="absent" />Absent
+        </td>
+        {% else %}
+            <td style="color: green;">
+            Today Attendance completed
+            </td>
+        {% endif %}
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+   
+
+<button class="btn btn-primary" type='submit'> submit</button>
+
+<h5>Today Present Students: {{present_data}}</h5>
+<h5>Today Absent Students: {{absent_data}}</h5>
+<h5>Today Total Students: {{total_student}}</h5>
+
+
+</form>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+{% endblock %}

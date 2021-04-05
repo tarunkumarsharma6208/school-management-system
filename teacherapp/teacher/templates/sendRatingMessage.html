@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-primary">{{message}}</div>
+{% endfor %}
+{% endif %}
+  
+<form method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Admission No</th>
+                <th>Rating</th>
+                <th>Message</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+           {% for i in object %}
+            <tr class="studentRow">
+
+                <td> {{ i.name }} </td>
+                <td> {{ i.admissionNo }}<input type="hidden" class="admissionNo" value="{{i.admissionNo}}"></td>   
+                <td class="rate"><select name="nameofobject">
+                            <option value="0">----</option>
+                            <option value="1">one</option>
+                            <option value="2">two</option>
+                            <option value="3">three</option>
+                            <option value="4">four</option>
+                            <option value="5">five</option>
+                        </select></td>
+                <td> <input class="mymessage"  type="text" value=""> </td>
+            </tr> 
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    
+</form>
+<input class="btn btn-primary" type="submit" value="Submit" onclick="clickFunction(this);"/>
+<form method="POST" enctype="multipart/form-data" id="subForm">
+    {% csrf_token %} 
+   <input type="hidden" name="passedJSON" id="id_passedJSON" value="">
+   
+</form>
+
+<script type="text/javascript">
+    function clickFunction(){
+        var dataJSON = {}
+        $('.studentRow').each(function(){
+            var admissionData = $(this).find('.admissionNo').val(); 
+            var rateData =  $(this).find('[name="nameofobject"]').val();
+            var  messageData = $(this).find('.mymessage').val();
+            dataJSON[admissionData] =  [rateData, messageData]
+        })
+        passingJSON = JSON.stringify(dataJSON);
+        var submitData = document.getElementById('id_passedJSON');
+        submitData.value = passingJSON;
+        document.getElementById('subForm').submit();
+    }
+  
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'student/studentBase.html' %}
+
+{% block title%} student profile data {% endblock%}
+{% block content %}
+
+<h4>Wellcome: {{ request.user }}</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">Attendance</th>
+       <th scope="col">Date</th>
+      <th scope="col">Message</th>
+      <th scope="col">Rating</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      {% if my_attendance.status %}
+               <td> <p>{{ my_attendance.status }}</p></td>
+               <td><p> {{ my_attendance.date }}</p></td>
+      {% else %}
+                <td>Not Available</td>
+                <td>Not Available</td>
+      {% endif %}
+    {% if my_ratings.message %}
+        <td><p>{{ my_ratings.message }}</p></td>
+                       
+         <td><p> {{ my_ratings.rate }}</p><td>
+    {% else %}
+            <td>Message not Available</td>
+            <td>Rating not Available</td>
+    {% endif %}
+      
+    </tr>
+    
+  </tbody>
+</table>
+ 
+
+{% endblock %}
